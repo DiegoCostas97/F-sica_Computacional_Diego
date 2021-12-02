@@ -1,3 +1,3 @@
-# F-sica_Computacional_Diego
+# Física Computacional Diego
 
 Code for Física Computacional Avanzada. Máster de Física da USC.
