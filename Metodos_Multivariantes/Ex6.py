@@ -10,13 +10,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
-
-population_1 = pd.read_csv("train_fisher_A.dat", delim_whitespace=True, header=None).drop(columns=[0])
-population_2 = pd.read_csv("train_fisher_B.dat", delim_whitespace=True, header=None).drop(columns=[0])
-
-test_A = pd.read_csv("test_fisher_A.dat", delim_whitespace=True, header=None).drop(columns=[0])
-test_B = pd.read_csv("test_fisher_B.dat", delim_whitespace=True, header=None).drop(columns=[0])
-
 def computew(traindataset1, traindataset2):
     """
         Computes the w coefficient for the training dataset and the F points in order to 
@@ -45,6 +38,14 @@ def computew(traindataset1, traindataset2):
     
     return w, F_p1, F_p2
 
+# Read training and testing data
+population_1 = pd.read_csv("train_fisher_A.dat", delim_whitespace=True, header=None).drop(columns=[0])
+population_2 = pd.read_csv("train_fisher_B.dat", delim_whitespace=True, header=None).drop(columns=[0])
+
+test_A = pd.read_csv("test_fisher_A.dat", delim_whitespace=True, header=None).drop(columns=[0])
+test_B = pd.read_csv("test_fisher_B.dat", delim_whitespace=True, header=None).drop(columns=[0])
+
+# Colect results of interest
 w, F_p1, F_p2 = computew(population_1, population_2)
 
 # Plots the traning datasets ir onrder to select a adecuate cut-off
@@ -53,6 +54,8 @@ counts1, bins1, _1 = plt.hist(F_p1, color="khaki", alpha=0.6, bins=int(np.sqrt(l
 counts2, bins2, _2 = plt.hist(F_p2, color="mediumturquoise", alpha=0.6, bins=int(np.sqrt(len(F_p2))), label="Population 2")
 plt.legend()
 plt.pause(1)
+
+cut = float(input("Set the cut-off: ")) # Asks for cut-off
 
 # Filter the new dataset with the discriminant computated for the training dataset
 F_testA = [np.dot(w, list(test_A.loc[i])) for i in range(len(test_A))]
@@ -65,7 +68,6 @@ countsB, binsB, _B = plt.hist(F_testB, color="mediumturquoise", alpha=0.6, bins=
 max_A = np.max(countsA)
 max_B = np.max(countsB)
 maxxx = np.max([max_A, max_B])
-cut = float(input("Set the cut-off: ")) # Asks for cut-off
 plt.vlines(cut, 0, maxxx, linestyle="--", color="k", alpha=0.6)
 plt.legend()
 
