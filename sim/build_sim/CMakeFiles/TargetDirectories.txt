@@ -1,0 +1,4 @@
+/Users/diegocostasrodriguez/software/geant4/sim/build_sim/CMakeFiles/Simulation.dir
+/Users/diegocostasrodriguez/software/geant4/sim/build_sim/CMakeFiles/rebuild_cache.dir
+/Users/diegocostasrodriguez/software/geant4/sim/build_sim/CMakeFiles/edit_cache.dir
+/Users/diegocostasrodriguez/software/geant4/sim/build_sim/CMakeFiles/sim.dir
